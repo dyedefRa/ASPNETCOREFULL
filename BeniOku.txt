@@ -1,0 +1,26 @@
+1) MVC modulunu tanýtmak için.
+Startup.cs >
+
+    app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapDefaultControllerRoute();
+            });
+    ve
+       services.AddControllersWithViews();
+
+--------------------------------------
+2) Npm eklenilmesi ve bunun projeye tanýtýlmasý.
+
+npm setting config ekledik ve buraya bootstrap ekledik.
+Bu static file i projenýn gormesý ve bu dosyanýn ne dendiðinde çaðýrýlmasýný ayarlamak için Startup ta;
+
+
+ =>  app.UseStaticFiles(
+                new StaticFileOptions() {
+                 FileProvider=new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(),"node_modules")),
+                 RequestPath="/content"               
+                });
+
+3) libmanla da yapabýlýrýz paket yuklemeyý
+
+Add> ClientSize Library
