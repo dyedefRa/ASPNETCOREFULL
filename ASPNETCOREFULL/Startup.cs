@@ -1,6 +1,10 @@
+using ASPNETCOREFULL.DataAccess.Abstract.IRepository;
+using ASPNETCOREFULL.DataAccess.Concrete.Context;
+using ASPNETCOREFULL.DataAccess.Concrete.Repository.EFRepository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
@@ -27,6 +31,13 @@ namespace ASPNETCOREFULL
         {
             //services.AddRazorPages();
             services.AddControllersWithViews();
+            services.AddDbContext<FullContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                options.UseLazyLoadingProxies();
+            });
+            services.AddScoped<ICategoryRepository, EfCategoryRepository>();
+            services.AddScoped<IProductRepository, EfProductRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

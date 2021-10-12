@@ -1,0 +1,3 @@
+NuGeT > Dapper.Contrib 
+
+devamý yok. dizayn etmedým.

@@ -8,6 +8,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8CF8454C-8BE8-4450-90D5-C755AA8F2327}"
 	ProjectSection(SolutionItems) = preProject
 		BeniOku.txt = BeniOku.txt
+		EFCORE.txt = EFCORE.txt
+		for Dapper.txt = for Dapper.txt
+		ViewComponent.txt = ViewComponent.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASPNETCOREFULL.Entity", "ASPNETCOREFULL.Entity\ASPNETCOREFULL.Entity.csproj", "{77023338-417B-40BF-A2B4-85ABCF1284FD}"
