@@ -1,0 +1,23 @@
+TagHelpers dosyasý altýnda örneði var.  (TagHelpers/CategoryProductTH te)
+Ilgili CategoryProductTH  sýnýfýn TagHelpe sýnýfýndan miras aldýk.
+ve
+Process methodunu override edeceðiz.
+Oluþturduðun her property ilgili tag in bir propertisi oluyor yani.
+
+		        public int CategoryId { get; set; }
+
+ekledik ve bu tag helperi kullanýrken;
+
+				 <getCategoryName category-id="1"></getCategoryName> (Home/Index te)
+
+CategoryId parametrisi bu þekilde gönderdik.
+ve
+
+	_ViewImports a bu tag helperi eklemeliyiz.
+
+@addTagHelper ASPNETCOREFULL.TagHelpers.*,ASPNETCOREFULL  (_ViewImports te)
+
+(dosyayolu,projeadý)
+
+
+

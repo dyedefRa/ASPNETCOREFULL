@@ -1,0 +1,28 @@
+Cookie ler tarayýcý tarafýnda tutulan datadýr. /(Client tarafýnda kaynaklarý tüketirler.)
+Sessionlar , cookielerin sunucu tarafýnda tutulan versiyonudur. /(Sunucu tarafýnda kaynaklarý tüketirler.)
+
+---------COOKIE-------------
+Home/Index te örneði var.
+   public void SetCookie(string key,string value)
+            HttpContext.Response.Cookies.Append(key, value);
+        
+   public string GetCookie(string key)       
+            HttpContext.Request.Cookies.TryGetValue(key, out string value);
+
+Expires = Ne kadar kalacak
+   Session= session sonlanana kadar . Yani tarayýcý kapatlýrsa cookie sona erer.
+HttpOnly = false
+   javaScripte açýk demek.
+Secure = true
+   https te çalýssýn !
+ Secure  =None  paylaþýma açýk  sub domain vs herkes kullanabýlýr.
+
+ ---------SESSION-------------
+
+ Core da Session kullanabýlmek ýcýn, Servislere Session eklememiz ve Middleware de bunu kullanmamýz gerekýyor. Startupta ;
+
+    services.AddSession();
+
+ve
+
+     app.UseSession();

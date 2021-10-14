@@ -38,8 +38,11 @@ namespace ASPNETCOREFULL
             });
             services.AddScoped<ICategoryRepository, EfCategoryRepository>();
             services.AddScoped<IProductRepository, EfProductRepository>();
+
+            services.AddSession(); //Session örnegýnde bunu ekledýk.
         }
 
+        //MIDDLEWARE
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -65,6 +68,7 @@ namespace ASPNETCOREFULL
 
             app.UseRouting();
 
+            app.UseSession();//Session örnegýnde bunu ekledýk.
             app.UseAuthorization();
 
             //app.UseEndpoints(endpoints =>
