@@ -54,7 +54,7 @@ namespace ASPNETCOREFULL
                 app.UseHsts();
             }
 
-            
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             //app.UseStaticFiles(
@@ -67,9 +67,22 @@ namespace ASPNETCOREFULL
 
             app.UseAuthorization();
 
+            //app.UseEndpoints(endpoints =>
+            //{
+            //    endpoints.MapDefaultControllerRoute();
+            //});
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapDefaultControllerRoute();
+                endpoints.MapControllerRoute(
+                    name: "startupRootu",
+                    pattern: "/startup",//Bu istek geldiðinden git
+                    defaults: new { Controller = "StartupRoot", Action = "Index" }
+                    );
+            });
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(name: "default", pattern: "{Controller=Home}/{Action=Index}/{id?}");
             });
         }
     }

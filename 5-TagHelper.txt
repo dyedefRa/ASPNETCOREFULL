@@ -1,0 +1,3 @@
+TagHelpers dosyasý altýnda örneði var.
+
+Process methodunu override edeceðiz.

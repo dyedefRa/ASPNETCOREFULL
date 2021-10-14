@@ -1,0 +1,24 @@
+------------------------------------------
+1-) Startup ta;
+
+     app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "startupRootu",
+                    pattern: "/startup",//Bu istek geldiðinden git
+                    defaults: new { Controller = "StartupRoot", Action = "Index" }
+                    );
+            });
+
+ekleyerek
+https://localhost:44304/startupRootu
+a gelen iteði  
+        =>  /StartupRoot/Index ,
+e yönlendirdik.
+
+------------------------------------------
+2) RouteAttributeController a  [Route("routeAttr/[action]")] ekleyerek tüm routeleri ezdirdik ve bu þekilde gelen bir isteði ilgili actiona yönlendirdik .
+
+https://localhost:44304/routeAttr/Index
+
+"Attribute tarafýndaki belirtmiþ olduðun route Attribute i . EndPoint tarafýndaki patternlarý ezer."

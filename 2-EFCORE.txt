@@ -1,0 +1,24 @@
+€€  EfCore
+€€  SqlServer
+€€  Design
+€€  Tools
+€€  Proxies
+---------- LazyLoading için  EFCore Proxies i indir ve 
+
+
+Context i bu þekilde üret; (DataAccessLayer i incele.)
+
+		      public FullContext(DbContextOptions<FullContext> options) : base(options)
+        {
+
+        }
+
+ve
+
+Startup ayarlarýna bkk yani ;
+ConfigureServices methoduna bak !
+
+
+                add-migration initialize
+
+                update-database

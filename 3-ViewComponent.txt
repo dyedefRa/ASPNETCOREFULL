@@ -1,0 +1,12 @@
+1)ViewComponents dosyasında ki CategoryVC i ürettik;
+
+2)Invoke methodu ekliyoruz ve VC de kullanacağın modeli buraya çağır ve gönder.
+=>
+  public IViewComponentResult Invoke()
+        {
+            var model = _categoryRepository.List();
+            return View(model);
+        }
+
+3)
+Views > Shared > Components altına aynı sınıf ısmınde (CategoryVC) bir dosya açtık ve Default.cs oluşturduk . Buraya istediğin template i yapıstır.
