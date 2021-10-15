@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace ASPNETCOREFULL.ViewComponents
 {
-    public class CategoryVC : ViewComponent
+    //@await Component.InvokeAsync("CategoryVC")
+    public class CategoryVC : ViewComponent // Home indexte örnegi var.
     {
         private readonly ICategoryRepository _categoryRepository;
 

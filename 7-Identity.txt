@@ -1,0 +1,70 @@
+
+--------------------BURADAN BAÞLA OKUMAYA---------------------------
+
+NuGet tan indir;
+	€€	Microsoft.AspnetCore.Identity
+	€€	Microsoft.AspNetCore.Identity.EntityFrameworkCore
+
+1) Manuel bir IdentityUser oluþturduk.Ýsmini AppUser dedik ve standart identity de olmayan bir field ekledik buraya. Yani ImageUrl (DataAccess>Concrete>Identity>Appuser)
+
+2) Contextimizi DbContext deðilde IdentityDbContext ten miras aldýk  ve AppUser sýnýfýný buna generic ile verdik. (DataAccess>Concrete>Context>FullContext)
+		 public class FullContext : IdentityDbContext<AppUser> //Identity kullanmak için bunu kullandýk.
+
+3) Startupta bunu tanýttýk.
+		   services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<FullContext>();
+
+4)Context hangi Katmandaysa onu seçerek Package Manage Kontrolla Db ye migration ekleyip , güncelledik.
+
+€€		add-migration AddToIdentity
+€€		update-database
+
+
+NOT 
+startup a  services.AddDbContext eklemekte gerekiyor yoksa ekle.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------
+1 ve 2. BOLUMUN OZETI 
+ FARKLI  DB OLUSTURDUK  (IDENTITY ICIN FARKLI DB OLUSTURDUK AMA BU SEKILDE KULLANMAK HOS DEGIL.O YUZDEN VERILERI SILDIK )
+
+-------------------------------1.BOLUM----------------------------------------
+
+Identitye özel yeni bir Context üretiyoruz.IdentityDbContext den mýras aldýrýyoruz.(IdentityContext > FullIdentityContext )
+Databaseyi oluþturalým.
+
+	€€  add-migration IdentityCreate 
+
+yazdýðýmýzda iki context var hatasý alýyoruz!
+(BIRDEN FAZLA CONTEXT ÝLE ÇALIÞIYORSAN ;;;)
+
+	€€  add-migration IdentityCreate -context FullIdentityContext
+	€€  update-database -context FullIdentityContext
+
+-context dbadý   kullanman gerekiyor !
+
+Yeni bir db oluþtu ve Bu db Identity DB !
+
+-------------------------------2.BOLUM----------------------------------------
+Amaç Contextleri birleþtirmek.Sistem için ayrý Identity için ayrý db miz olmasýn !
+
+Tüm yeni oluþturudugn verileri sil.
+IdentityContext IdentityDb ve bu db ile ilgili migrationlarýn sil.
+
+Yani mevcut databasein içine bu identity tablolarý gelsin ve TABLO GELIRKEN OZEL OLARAK FIELD DA EKLEYELIM .Örneðin gelcek User tablosuna imgUrl ekleyelým
+

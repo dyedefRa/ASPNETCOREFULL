@@ -10,3 +10,6 @@
 
 3)
 Views > Shared > Components altýna ayný sýnýf ýsmýnde (CategoryVC) bir dosya açtýk ve Default.cs oluþturduk . Buraya istediðin template i yapýstýr.
+
+
+=>     //@await Component.InvokeAsync("CategoryVC")

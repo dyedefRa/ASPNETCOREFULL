@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ASPNETCOREFULL.TagHelpers
 {
-    [HtmlTargetElement("getCategoryName")]
+    [HtmlTargetElement("getCategoryName")] //(Home indexte örnegi var)
     public class CategoryProductTH : TagHelper
     {
         

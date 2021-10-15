@@ -1,9 +1,11 @@
 using ASPNETCOREFULL.DataAccess.Abstract.IRepository;
 using ASPNETCOREFULL.DataAccess.Concrete.Context;
+using ASPNETCOREFULL.DataAccess.Concrete.Identity;
 using ASPNETCOREFULL.DataAccess.Concrete.Repository.EFRepository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,11 +28,12 @@ namespace ASPNETCOREFULL
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddRazorPages();
-            services.AddControllersWithViews();
+            services.AddControllersWithViews(); //MVC modulunu servislere eklememize yarýyor.
+
+            #region dependecyinjection
             services.AddDbContext<FullContext>(options =>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
@@ -38,13 +41,31 @@ namespace ASPNETCOREFULL
             });
             services.AddScoped<ICategoryRepository, EfCategoryRepository>();
             services.AddScoped<IProductRepository, EfProductRepository>();
+            #endregion
 
             services.AddSession(); //Session örnegýnde bunu ekledýk.
+
+            #region Identity
+            // services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<FullContext>(); 
+            //1.Identity notunda bunu ekledik.
+
+            //Identity 2 de bunu ekledik.
+            //Default ayarlarý deðiþtirdik.
+            services.AddIdentity<AppUser, IdentityRole>(opt =>
+            {
+                opt.Password.RequireDigit = false;
+                opt.Password.RequireLowercase = false;
+                opt.Password.RequiredLength = 3;
+                opt.Password.RequireUppercase = false;
+                opt.Password.RequireNonAlphanumeric = false;
+            }).AddEntityFrameworkStores<FullContext>();
+
+            #endregion
         }
 
         //MIDDLEWARE
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        //public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager) //IdentityInitializer sýnfýýný kullanmak için parameteryle user ve role manger aldýk. Identity 2.
         {
             if (env.IsDevelopment())
             {
@@ -53,10 +74,10 @@ namespace ASPNETCOREFULL
             else
             {
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
+            IdentityInitializer.CreateAdminUserAndAdminRole(userManager, roleManager);
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -87,7 +108,7 @@ namespace ASPNETCOREFULL
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(name: "default", pattern: "{Controller=Home}/{Action=Index}/{id?}");
-            });
+            });  //MVC modulunu kullanmamýza yarýyor.
         }
     }
 }

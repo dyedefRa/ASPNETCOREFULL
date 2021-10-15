@@ -21,6 +21,9 @@ Bu static file i projenýn gormesý ve bu dosyanýn ne dendiðinde çaðýrýlmasýný aya
                  RequestPath="/content"               
                 });
 
+content istegi geldýgýnde ; buraya git =>
+                Path.Combine(Directory.GetCurrentDirectory(),"node_modules"
+
 3) libmanla da yapabýlýrýz paket yuklemeyý
 
 Add> ClientSize Library

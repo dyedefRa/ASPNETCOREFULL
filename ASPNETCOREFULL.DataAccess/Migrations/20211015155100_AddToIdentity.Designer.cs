@@ -4,14 +4,16 @@ using ASPNETCOREFULL.DataAccess.Concrete.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ASPNETCOREFULL.DataAccess.Migrations
 {
     [DbContext(typeof(FullContext))]
-    partial class FullContextModelSnapshot : ModelSnapshot
+    [Migration("20211015155100_AddToIdentity")]
+    partial class AddToIdentity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,0 +1,24 @@
+Burada Identityle gelen sýnýflarýn ve kullanýmý göreceðiz.
+
+UserManager => aspnetUser
+RoleManager => AspnetRole
+
+SignInManager => Giriþ çýkýiþ
+
+
+1)ASPNETCOREFULL.DataAccess.Concrete.Identity de  IdentityInitializer methoduyla Identityinin bize saðladýgý kullancý ve rol iþlemleri yaptýk
+ve Bunu Startuptan çaðýrdýk.
+
+Configure Methoudunu deðiþtirdik ki buradan User ve Role Manager a ulaþmak ýstedýgýmýzde parametresýne yazmak yetterlý.
+
+Not   services.AddIdentity methodunu deðiþtirdik basit bir þekilde admin kullanýcý olusturmak ýcýn .
+
+
+ services.AddIdentity<AppUser, IdentityRole>(opt =>
+            {
+                opt.Password.RequireDigit = false;
+                opt.Password.RequireLowercase = false;
+                opt.Password.RequiredLength = 3;
+                opt.Password.RequireUppercase = false;
+                opt.Password.RequireNonAlphanumeric = false;
+            }).AddEntityFrameworkStores<FullContext>();
