@@ -1,0 +1,42 @@
+1-Areas> altýndaki dosya yapýsýný kur.
+2-Ýlgili Admin>HomeController a [Areas("admin")] attributesini verdik.
+
+3-Startup ta ilgili routue patternini ekle yani ;
+
+
+            //https://localhost:44304/Admin/Home/Index
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "areas",
+                    pattern: "{area}/{controller=Home}/{action=Index}/{id?}"
+                    );
+            });
+
+----------2 .BOLUM-----------------
+
+ Admin>HomeController a     [Authorize] attributesini verdik.
+
+ ve Startup ta
+
+           services.AddAuthentication(); //a1 Areaslar için bunu kullandýk.
+
+           app.UseAuthentication(); //a2 Areaslar için bunu kullandýk.(Giriþ yaptý mý yapmadý mý?)
+
+           app.UseAuthorization(); //a3 Areaslar için bunu kullandýk.(Kullancý yetki ve rol)
+
+
+VE Identity ile tutulan cookie Default ayarlarýný degýstýrelým.
+
+
+    services.ConfigureApplicationCookie(opt =>
+            {
+                opt.LoginPath = new PathString("/Home/Login");
+                opt.Cookie.Name = "AspnetCoreFull";
+                opt.Cookie.HttpOnly = true; //Javascript ile çekilmesin!
+
+                //opt.Cookie.SameSite = SameSiteMode.Lax; //Dýþ kaynaklar cookie kullanabýlýr.Sub domaýnden tut baþka domaýnlerde kullar
+                opt.Cookie.SameSite = SameSiteMode.Strict; //Hiç bir  alt domain ve dýþ domainler kullanamaz.
+                opt.ExpireTimeSpan = TimeSpan.FromDays(1);
+            });
+

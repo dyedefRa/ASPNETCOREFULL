@@ -4,6 +4,7 @@ using ASPNETCOREFULL.DataAccess.Concrete.Identity;
 using ASPNETCOREFULL.DataAccess.Concrete.Repository.EFRepository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -30,20 +31,8 @@ namespace ASPNETCOREFULL
 
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddRazorPages();
+            services.AddRazorPages();
             services.AddControllersWithViews(); //MVC modulunu servislere eklememize yarýyor.
-
-            #region dependecyinjection
-            services.AddDbContext<FullContext>(options =>
-            {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-                options.UseLazyLoadingProxies();
-            });
-            services.AddScoped<ICategoryRepository, EfCategoryRepository>();
-            services.AddScoped<IProductRepository, EfProductRepository>();
-            #endregion
-
-            services.AddSession(); //Session örnegýnde bunu ekledýk.
 
             #region Identity
             // services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<FullContext>(); 
@@ -61,6 +50,40 @@ namespace ASPNETCOREFULL
             }).AddEntityFrameworkStores<FullContext>();
 
             #endregion
+
+            #region Authention Areas
+            //Identity  cookie kullanuor ve bunun defaultu degýstýrelým ; (Burasý Identity regionnudan altta olmasý lazým bu methodun ýcýnde)
+            services.AddAuthentication(); //a1 Areaslar için bunu kullandýk.
+            
+            //Defaultu /Account/Login
+            services.ConfigureApplicationCookie(opt =>
+            {
+                opt.LoginPath = new PathString("/Home/Login"); //Authorize olmamýþ bir kullanýcý giriþ yaptýgýnda hangi url e yonlensýn.
+                opt.Cookie.Name = "AspnetCoreFull";
+                opt.Cookie.HttpOnly = true; //Javascript ile çekilmesin!
+
+                //opt.Cookie.SameSite = SameSiteMode.Lax; //Dýþ kaynaklar cookie kullanabýlýr.Sub domaýnden tut baþka domaýnlerde kullar
+                opt.Cookie.SameSite = SameSiteMode.Strict; //Hiç bir  alt domain ve dýþ domainler kullanamaz.
+                opt.ExpireTimeSpan = TimeSpan.FromDays(1);
+            });
+
+            #endregion
+
+            #region dependecyinjection
+            services.AddDbContext<FullContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                options.UseLazyLoadingProxies();
+            });
+            services.AddScoped<ICategoryRepository, EfCategoryRepository>();
+            services.AddScoped<IProductRepository, EfProductRepository>();
+            #endregion
+
+            services.AddSession(); //Session kullanmak için bunu ekledik.
+
+       
+
+
         }
 
         //MIDDLEWARE
@@ -90,7 +113,11 @@ namespace ASPNETCOREFULL
             app.UseRouting();
 
             app.UseSession();//Session örnegýnde bunu ekledýk.
-            app.UseAuthorization();
+
+
+            app.UseAuthentication(); //a2 Areaslar için bunu kullandýk.(Giriþ yaptý mý yapmadý mý?)
+            app.UseAuthorization(); //a3 Areaslar için bunu kullandýk.(Kullancý yetki ve rol)
+
 
             //app.UseEndpoints(endpoints =>
             //{
@@ -109,6 +136,18 @@ namespace ASPNETCOREFULL
             {
                 endpoints.MapControllerRoute(name: "default", pattern: "{Controller=Home}/{Action=Index}/{id?}");
             });  //MVC modulunu kullanmamýza yarýyor.
+
+
+            //Area için ekledik.
+            //https://localhost:44304/Admin/Home/Index
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "areas",
+                    pattern: "{area}/{controller=Home}/{action=Index}/{id?}"
+                    );
+            });
+
         }
     }
 }

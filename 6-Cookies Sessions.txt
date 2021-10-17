@@ -12,10 +12,15 @@ Home/Index te örneði var.
 Expires = Ne kadar kalacak
    Session= session sonlanana kadar . Yani tarayýcý kapatlýrsa cookie sona erer.
 HttpOnly = false
-   javaScripte açýk demek.
+    Default false dir. True dersen javascript ile cookie cekýlemez.
+   javaScript tarafýndan cookie cekilmesin deðil mi =HttpOnly 
 Secure = true
    https te çalýssýn !
  Secure  =None  paylaþýma açýk  sub domain vs herkes kullanabýlýr.
+
+
+  SameSite = SameSiteMode.Lax; //Dýþ kaynaklar cookie kullanabýlýr.Sub domaýnden tut baþka domaýnlerde kullar
+  SameSite = SameSiteMode.Strict; //Hiç bir  alt domain ve dýþ domainler kullanamaz.
 
  ---------SESSION-------------
 
