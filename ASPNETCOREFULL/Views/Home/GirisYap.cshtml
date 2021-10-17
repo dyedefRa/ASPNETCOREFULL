@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "GirisYap";
+}
+
+@model ASPNETCOREFULL.Models.KullaniciGirisModel
+<link href="~/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<form asp-action="GirisYap" method="post" class="p-4 w-50 mx-auto shadow">
+
+    <div class="form-group p-1">
+        <label asp-for="KullaniciAd"></label>
+        <input type="text" asp-for="KullaniciAd" placeholder="Kullanıcı Adını giriniz..." class="form-control" />
+    </div>
+    <div class="form-group p-1">
+        <label asp-for="Sifre"></label>
+        <input type="password" asp-for="Sifre" placeholder="Kullanıcı Adını giriniz..." class="form-control" />
+    </div>
+    <div class="form-group  p-1">
+        <input type="checkbox" asp-for="BeniHatirla" class="form-check-input" />
+        <label asp-for="BeniHatirla" class="form-check-label"> Beni Hatırla</label>
+    </div>
+    <div class="form-group p-1">
+        <button type="submit" class="btn btn-primary">Giriş Yap</button>
+    </div>
+</form>

@@ -1,5 +1,6 @@
 ﻿using ASPNETCOREFULL.DataAccess.Abstract.IRepository;
 using ASPNETCOREFULL.DataAccess.Concrete.Context;
+using ASPNETCOREFULL.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -62,7 +63,11 @@ namespace ASPNETCOREFULL.Controllers
         }
         #endregion
 
-
+        public IActionResult GirisYap()
+        {
+            KullaniciGirisModel model = new KullaniciGirisModel();
+            return View(model);
+        }
 
 
     }

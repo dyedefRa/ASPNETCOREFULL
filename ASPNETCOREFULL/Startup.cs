@@ -58,7 +58,7 @@ namespace ASPNETCOREFULL
             //Defaultu /Account/Login
             services.ConfigureApplicationCookie(opt =>
             {
-                opt.LoginPath = new PathString("/Home/Login"); //Authorize olmamýþ bir kullanýcý giriþ yaptýgýnda hangi url e yonlensýn.
+                opt.LoginPath = new PathString("/Home/GirisYap"); //Authorize olmamýþ bir kullanýcý giriþ yaptýgýnda hangi url e yonlensýn.
                 opt.Cookie.Name = "AspnetCoreFull";
                 opt.Cookie.HttpOnly = true; //Javascript ile çekilmesin!
 
