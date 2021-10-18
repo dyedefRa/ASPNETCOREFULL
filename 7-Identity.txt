@@ -30,15 +30,6 @@ startup a  services.AddDbContext eklemekte gerekiyor yoksa ekle.
 
 
 
-
-
-
-
-
-
-
-
-
 --------------------------------------------------------------
 1 ve 2. BOLUMUN OZETI 
  FARKLI  DB OLUSTURDUK  (IDENTITY ICIN FARKLI DB OLUSTURDUK AMA BU SEKILDE KULLANMAK HOS DEGIL.O YUZDEN VERILERI SILDIK )
