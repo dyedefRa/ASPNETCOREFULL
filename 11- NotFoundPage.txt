@@ -1,0 +1,16 @@
+Sayfa buulunmadýgýnda => 
+
+
+Startupa ;
+        app.UseStatusCodePagesWithReExecute("/Home/NotFound", "?code={0}");
+
+ekleyerke  bu þekilde yakalayabýlýrýz olmayan sayfa yeriie buraya gýder..
+
+HomeController ;
+
+     public IActionResult NotFound(int code)
+        {
+            ViewBag.Code = code;
+
+            return View();
+        }

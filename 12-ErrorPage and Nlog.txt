@@ -1,0 +1,22 @@
+PROJEDE Hata oldugunda yakalayalým ve bunu loglayalým
+
+1)
+Startup.cs;
+
+    app.UseExceptionHandler("/Error");//HAta bulunursa
+
+  
+2) HomeControler ; 
+
+ [Route("Error")]
+        public IActionResult Error()
+        {
+            var errorInfo = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+            return View();
+        }
+
+3)Nlog indir ve NLog.config indir.
+
+
+
+Nlogta sorun var gibi

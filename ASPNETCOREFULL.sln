@@ -8,6 +8,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8CF8454C-8BE8-4450-90D5-C755AA8F2327}"
 	ProjectSection(SolutionItems) = preProject
 		1-MVC Modulu ve Npm.txt = 1-MVC Modulu ve Npm.txt
+		10-Client Side Validation.txt = 10-Client Side Validation.txt
+		11- NotFoundPage.txt = 11- NotFoundPage.txt
+		12-ErrorPage and Nlog.txt = 12-ErrorPage and Nlog.txt
 		2-EFCORE.txt = 2-EFCORE.txt
 		3-ViewComponent.txt = 3-ViewComponent.txt
 		4-RouteAttributeveStartupRoute.txt = 4-RouteAttributeveStartupRoute.txt

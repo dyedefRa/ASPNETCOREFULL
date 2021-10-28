@@ -1,0 +1,26 @@
+1) Server Side Validation 
+
+KullaniciGirisModel deki dataannotianlar yardýmýyla bu validation iþlmelerini yapýyoruz.
+
+Home/GirisYap ta ve GirisYap.cshtml de var.
+
+Tek tek validation için ; (span olmalý)
+ @*<span asp-validation-for="KullaniciAd" class="text-danger"></span>*@
+
+ Toplu validation için ; (div olmalý)
+ <div asp-validation-summary="All" class="text-danger"></div>
+
+ 2)Client Side Validation !!!
+ a)LIBMANA;
+
+ {
+      "library": "jquery-validate@1.19.3",
+      "destination": "wwwroot/jqueryValid",
+      "files": [ "jquery.validate.min.js" ]
+    },
+    {
+      "library": "jquery-validation-unobtrusive@3.2.12",
+      "destination": "wwwroot/jqueryUnob",
+      "files": [ "jquery.validate.unobtrusive.min.js" ]
+    }
+b)

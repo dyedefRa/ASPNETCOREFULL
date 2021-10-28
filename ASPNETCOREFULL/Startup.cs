@@ -55,7 +55,7 @@ namespace ASPNETCOREFULL
             //Identity  cookie kullanuor ve bunun defaultu degýstýrelým ; (Burasý Identity regionnudan altta olmasý lazým bu methodun ýcýnde)
             services.AddAuthentication(); //a1 Areaslar için bunu kullandýk.
             
-            //Defaultu /Account/Login
+            //Defaultu /Account/Login LOGIN OLDUGUNDA BU COOKIE OLUSSUN
             services.ConfigureApplicationCookie(opt =>
             {
                 opt.LoginPath = new PathString("/Home/GirisYap"); //Authorize olmamýþ bir kullanýcý giriþ yaptýgýnda hangi url e yonlensýn.
@@ -99,6 +99,10 @@ namespace ASPNETCOREFULL
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
+
+            app.UseStatusCodePagesWithReExecute("/Home/NotFound", "?code={0}"); //Sayfa yoksa
+
+            app.UseExceptionHandler("/Error");//HAta bulunursa
 
             IdentityInitializer.CreateAdminUserAndAdminRole(userManager, roleManager);
 
