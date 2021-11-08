@@ -26,6 +26,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASPNETCOREFULL.Entity", "AS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASPNETCOREFULL.DataAccess", "ASPNETCOREFULL.DataAccess\ASPNETCOREFULL.DataAccess.csproj", "{A26B9613-98F1-47B8-853A-28264F070753}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASPNETCOREFULL.Core", "ASPNETCOREFULL.Core\ASPNETCOREFULL.Core.csproj", "{474EEFBC-8780-4A20-97AD-7024ED00077F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{A26B9613-98F1-47B8-853A-28264F070753}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A26B9613-98F1-47B8-853A-28264F070753}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A26B9613-98F1-47B8-853A-28264F070753}.Release|Any CPU.Build.0 = Release|Any CPU
+		{474EEFBC-8780-4A20-97AD-7024ED00077F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{474EEFBC-8780-4A20-97AD-7024ED00077F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{474EEFBC-8780-4A20-97AD-7024ED00077F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{474EEFBC-8780-4A20-97AD-7024ED00077F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

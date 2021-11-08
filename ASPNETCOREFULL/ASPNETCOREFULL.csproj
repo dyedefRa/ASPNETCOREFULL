@@ -33,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ASPNETCOREFULL.Core\ASPNETCOREFULL.Core.csproj" />
     <ProjectReference Include="..\ASPNETCOREFULL.DataAccess\ASPNETCOREFULL.DataAccess.csproj" />
     <ProjectReference Include="..\ASPNETCOREFULL.Entity\ASPNETCOREFULL.Entity.csproj" />
   </ItemGroup>
