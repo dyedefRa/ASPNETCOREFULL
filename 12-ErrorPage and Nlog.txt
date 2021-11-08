@@ -19,4 +19,4 @@ Startup.cs;
 
 
 
-Nlogta sorun var gibiii
+Nlogta sorun var gibiiiii
