@@ -12,5 +12,7 @@ HomeController ;
         {
             ViewBag.Code = code;
 
+
+
             return View();
         }
