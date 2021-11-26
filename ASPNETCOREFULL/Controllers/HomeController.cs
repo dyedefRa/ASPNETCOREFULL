@@ -27,6 +27,13 @@ namespace ASPNETCOREFULL.Controllers
 
         public IActionResult Index()
         {
+            int ss = 4;
+#if DEBUG
+            ss = 3;
+#else
+            ss=11;
+#endif
+
             int a = 0;
             int x = 5 / a;
             //5- TagHelper burdaki viewda kullandık
@@ -45,7 +52,7 @@ namespace ASPNETCOREFULL.Controllers
             return View();
         }
 
-        #region Cookie Field
+#region Cookie Field
         public void SetCookie(string key, string value)
         {
             HttpContext.Response.Cookies.Append(key, value);
@@ -56,9 +63,9 @@ namespace ASPNETCOREFULL.Controllers
             HttpContext.Request.Cookies.TryGetValue(key, out string value);
             return value;
         }
-        #endregion
+#endregion
 
-        #region Session Field 
+#region Session Field 
         //Startupda servislere Session ekledik ve middleware de kullandık
         public void SetSession(string key, string value)
         {
@@ -70,7 +77,7 @@ namespace ASPNETCOREFULL.Controllers
             return HttpContext.Session.GetString(key);
 
         }
-        #endregion
+#endregion
 
         public IActionResult GirisYap()
         {
